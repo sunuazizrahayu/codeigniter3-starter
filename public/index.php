@@ -1,4 +1,6 @@
 <?php
+define('BACKPATH', __DIR__.'/../');
+
 /**
  * CodeIgniter
  *
@@ -97,7 +99,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'system';
+	$system_path = BACKPATH.'system';
 
 /*
  *---------------------------------------------------------------
@@ -114,7 +116,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+	$application_folder = BACKPATH.'application';
 
 /*
  *---------------------------------------------------------------
