@@ -9,6 +9,37 @@ services:
       dockerfile: docker/Dockerfile
     ports:
       - 8080:80
+    environment:
+      CI_MIGRATION: 'true'
+      # CI_MIGRATION_VERSION: 'latest'
+      DB_HOST: codeigniter3-starter-db
+      DB_USER: app
+      DB_PASS: app
+      DB_NAME: codeigniter3-starter
     volumes:
       - .:/app
       # - /app/vendor
+
+  db:
+    container_name: codeigniter3-starter-db
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: codeigniter3-starter
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./database:/var/lib/mysql
+
+  pma:
+    container_name: codeigniter3-starter-pma
+    image: phpmyadmin/phpmyadmin:5.2
+    ports:
+      - 8083:80
+    environment:
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 300M

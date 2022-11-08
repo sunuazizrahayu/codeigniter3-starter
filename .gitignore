@@ -1,3 +1,5 @@
+/database/
+#-------------------------
 .DS_Store
 
 application/cache/*
