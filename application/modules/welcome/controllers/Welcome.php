@@ -20,6 +20,7 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$lang = $this->config->item('language_abbr');
+		$this->load->view('welcome_message_'.$lang);
 	}
 }

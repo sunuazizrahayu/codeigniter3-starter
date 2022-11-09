@@ -85,6 +85,17 @@ $config['url_suffix'] = '';
 */
 $config['language']	= 'english';
 
+// MULTI LANGUAGE FEATURE
+// https://stackoverflow.com/questions/31895341/codeigniter-dynamic-language-functionality
+/* default language abbreviation */
+$config['language_abbr'] = 'en';
+
+/* set available language abbreviations */
+$config['language_abbr_list'] = array("en"=>"english", "id"=>"indonesia");
+
+/* set language cookie name */
+$config['language_cookie_name'] = 'ci_language';
+
 /*
 |--------------------------------------------------------------------------
 | Default Character Set
