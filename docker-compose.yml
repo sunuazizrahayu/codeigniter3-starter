@@ -16,6 +16,8 @@ services:
       DB_USER: app
       DB_PASS: app
       DB_NAME: codeigniter3-starter
+      CI_STORAGE: 'local'
+      CI_STORAGE_PATH: 'storage'
     volumes:
       - .:/app
       # - /app/vendor
