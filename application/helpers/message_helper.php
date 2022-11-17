@@ -12,6 +12,7 @@ if (!function_exists('send_email')) {
 		}
 
 		$CI = get_instance();
+		$CI->load->database();
 		$CI->db->trans_start();
 		$CI->db->insert('ci_messages', [
 			'message_method' => 'email',
