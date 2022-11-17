@@ -41,6 +41,13 @@ RUN ln -s /usr/sbin/php-fpm8 /usr/sbin/php-fpm
 COPY docker/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
 
 
+
+# Fix Permission (support volume)
+RUN adduser -S www-data -u 1000
+RUN sed -i "s/user = nobody/user = www-data/g" /etc/php8/php-fpm.d/www.conf
+RUN sed -i "s/group = nobody/group = www-data/g" /etc/php8/php-fpm.d/www.conf
+
+
 # Project Files
 ######################################################################
 # Change Dir
