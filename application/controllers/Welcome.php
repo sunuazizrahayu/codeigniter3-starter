@@ -20,6 +20,12 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$lang_code = $this->config->item('language_abbr');
+		if (file_exists(APPPATH.'views/welcome_message.'.$lang_code.'.php')) {
+			$lang_code = '.'.$lang_code.'.php';
+		}else{
+			$lang_code = '';
+		}
+		$this->load->view('welcome_message'.$lang_code);
 	}
 }
