@@ -1,3 +1,7 @@
+docker-compose.yml
+
+# CodeIgniter Default
+#-------------------------
 .DS_Store
 
 application/cache/*
