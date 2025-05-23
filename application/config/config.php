@@ -24,6 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = '';
+if (!$config['base_url'] && !is_cli()) {
+	$config['base_url'] = (is_https()) ? "https" : "http";
+	$config['base_url'] .= "://".($_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST']);
+	$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+}
 
 /*
 |--------------------------------------------------------------------------
