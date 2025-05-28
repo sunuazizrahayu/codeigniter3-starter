@@ -11,6 +11,16 @@ RUN apk add \
 	php-fpm \
 	php-opcache
 
+# Install Composer
+RUN apk add \
+	php-phar \
+	php-iconv \
+	php-openssl
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# composer package phpdotenv requirements
+RUN apk add php-mbstring
+
 
 
 # NGINX Configurations
@@ -39,6 +49,9 @@ WORKDIR /app
 
 # Add application
 COPY . .
+
+# Install Composer Dependency
+RUN composer install --working-dir=. --prefer-dist --no-scripts --no-dev && rm -rf /root/.composer
 
 
 

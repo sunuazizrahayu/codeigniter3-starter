@@ -11,6 +11,16 @@ RUN apk add \
 	php81-fpm \
 	php81-opcache
 
+# Install Composer
+RUN apk add \
+	php81-phar \
+	php81-iconv \
+	php81-openssl
+RUN curl -sS https://getcomposer.org/installer | php81 -- --install-dir=/usr/bin --filename=composer
+
+# composer package phpdotenv requirements
+RUN apk add php81-mbstring
+
 
 
 # NGINX Configurations
@@ -39,6 +49,9 @@ WORKDIR /app
 
 # Add application
 COPY . .
+
+# Install Composer Dependency
+RUN composer install --working-dir=. --prefer-dist --no-scripts --no-dev && rm -rf /root/.composer
 
 
 
