@@ -1,6 +1,17 @@
 <?php
 define('BACKPATH', __DIR__.'/../');
 
+//load composer and phpdotenv
+$composer_autoload = BACKPATH . 'vendor/autoload.php';
+if (!file_exists($composer_autoload)) {
+	http_response_code(500);
+	echo "Composer autoload not found, please execute `composer install`";
+	die;
+}
+require_once $composer_autoload;
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(BACKPATH);
+$dotenv->safeLoad();
+
 /**
  * CodeIgniter
  *
