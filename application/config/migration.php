@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | and disable it back when you're done.
 |
 */
-$config['migration_enabled'] = FALSE;
+$config['migration_enabled'] = filter_var(getenv('CI_MIGRATION'), FILTER_VALIDATE_BOOLEAN);
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $config['migration_enabled'] = FALSE;
 |       defaults to 'sequential' for backward compatibility with CI2.
 |
 */
-$config['migration_type'] = 'timestamp';
+$config['migration_type'] = 'sequential';
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ $config['migration_type'] = 'timestamp';
 | will migrate up. This must be set.
 |
 */
-$config['migration_table'] = 'migrations';
+$config['migration_table'] = 'ci_migrations';
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ $config['migration_table'] = 'migrations';
 | in your code to have the latest migration.
 |
 */
-$config['migration_auto_latest'] = FALSE;
+$config['migration_auto_latest'] = filter_var(strtolower(getenv('CI_MIGRATION_VERSION'))=='latest' ?? FALSE, FILTER_VALIDATE_BOOLEAN);
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ $config['migration_auto_latest'] = FALSE;
 | be upgraded / downgraded to.
 |
 */
-$config['migration_version'] = 0;
+$config['migration_version'] = getenv('CI_MIGRATION_VERSION') ?? 0;
 
 /*
 |--------------------------------------------------------------------------
