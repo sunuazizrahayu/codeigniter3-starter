@@ -1,1 +1,3 @@
 .git
+/public/storage/*
+!/public/storage/index.html
