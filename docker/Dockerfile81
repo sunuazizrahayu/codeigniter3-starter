@@ -43,6 +43,12 @@ RUN ln -s /usr/sbin/php-fpm81 /usr/sbin/php-fpm || true
 COPY docker/fpm-pool.81.conf /etc/php81/php-fpm.d/www.conf
 COPY docker/php.ini /etc/php81/conf.d/custom.ini
 
+# Fix Permission (support volume)
+ARG UID=1000
+RUN adduser -S www-data -u $UID
+RUN sed -i "s/user = nobody/user = www-data/g" /etc/php81/php-fpm.d/www.conf
+RUN sed -i "s/group = nobody/group = www-data/g" /etc/php81/php-fpm.d/www.conf
+
 
 
 # Application
