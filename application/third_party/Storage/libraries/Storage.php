@@ -55,6 +55,7 @@ class Storage
 				return $this->upload_cloudinary($input_name, $destination_path, $filename_custom);
 				break;
 			case 'google':
+				$destination_path = strtolower($this->server_path).$destination_path;
 				return $this->upload_google($input_name, $destination_path, $filename_custom);
 				break;
 			default:
@@ -100,6 +101,12 @@ class Storage
 		$response = $this->ci->Cloudinary->upload($file_path, $options);
 		$response['url'] = $response['secure_url'];
 		return $response;
+	}
+
+	public function upload_google($input_name, $destination_path, $filename_custom='')
+	{
+		$this->ci->load->library('srv/Google', NULL, 'GoogleStorage');
+		return $this->ci->GoogleStorage->upload($input_name, $destination_path, $filename_custom);	
 	}
 
 }
