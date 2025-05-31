@@ -51,6 +51,7 @@ class Storage
 
 		switch ($this->server) {
 			case 'cloudinary':
+				$destination_path = strtolower($this->server_path).$destination_path;
 				return $this->upload_cloudinary($input_name, $destination_path, $filename_custom);
 				break;
 			case 'google':
@@ -74,6 +75,31 @@ class Storage
 	{
 		$this->ci->load->library('srv/Local', NULL, 'StorageLocal');
 		return $this->ci->StorageLocal->upload($input_name, $destination_path, $filename_custom);
+	}
+
+	public function upload_cloudinary($input_name, $destination_path, $filename_custom='')
+	{
+		$this->ci->load->library('srv/Cloudinary', NULL, 'Cloudinary');
+
+		$file_path = $_FILES[$input_name]['tmp_name'];
+		$options = [
+			'folder' => $destination_path,
+		];
+		if (!empty($filename_custom)) {
+			//generate subfix
+			$random = bin2hex(random_bytes(8));
+			$filename = $filename_custom.'_'.$random;
+
+			//fix file naming
+			$filename = preg_replace('/[^a-z0-9]+/', '_', $filename);
+			$filename = trim($filename, '_');
+
+			$options['public_id'] = $filename;
+			$options['overwrite'] = false;
+		}
+		$response = $this->ci->Cloudinary->upload($file_path, $options);
+		$response['url'] = $response['secure_url'];
+		return $response;
 	}
 
 }
