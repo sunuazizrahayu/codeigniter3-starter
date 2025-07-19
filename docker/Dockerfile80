@@ -15,7 +15,8 @@ RUN apk add \
 RUN apk add \
 	php-phar \
 	php-iconv \
-	php-openssl
+	php-openssl \
+	php-curl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # composer package phpdotenv requirements

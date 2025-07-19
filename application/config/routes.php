@@ -55,3 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 # DB migration
 $route['webhook/migrate'] = 'webhook/Migrate/index';
+
+# Enable Laravel-Like Routes
+$route = Luthier\Route::getRoutes();

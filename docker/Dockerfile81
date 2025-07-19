@@ -15,7 +15,8 @@ RUN apk add \
 RUN apk add \
 	php81-phar \
 	php81-iconv \
-	php81-openssl
+	php81-openssl \
+	php81-curl
 RUN curl -sS https://getcomposer.org/installer | php81 -- --install-dir=/usr/bin --filename=composer
 
 # composer package phpdotenv requirements
