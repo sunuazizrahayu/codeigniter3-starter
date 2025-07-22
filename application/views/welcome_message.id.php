@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Selamat Datang di CodeIgniter</title>
 
 	<style type="text/css">
 
@@ -79,21 +79,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Selamat Datang di CodeIgniter!</h1>
 
 	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+		<p>Halaman yang Anda lihat dibuat secara dinamis oleh CodeIgniter.</p>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+		<p>Jika Anda ingin mengubah halaman ini, Anda dapat menemukannya di:</p>
+		<code>application/views/welcome_message.id.php</code>
 
-		<p>The corresponding controller for this page is found at:</p>
+		<p>Pengontrol yang sesuai untuk halaman ini dapat ditemukan di:</p>
 		<code>application/controllers/Welcome.php</code>
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="https://www.codeigniter.com/userguide3/" target="_blank" rel="nofollow">User Guide</a>.</p>
+		<p>Jika Anda baru pertama kali menjelajahi CodeIgniter, Anda harus mulai dengan membaca <a href="https://www.codeigniter.com/userguide3/" target="_blank" rel="nofollow">Panduan Pengguna</a>.</p>
 	</div>
 
-	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ]</span>Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ]</span>Halaman dimuat dalam <strong>{elapsed_time}</strong> detik. <?php echo  (ENVIRONMENT === 'development') ?  'Versi CodeIgniter <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 <script>
 function lang(language_code) {
