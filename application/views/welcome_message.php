@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="https://www.codeigniter.com/userguide3/" target="_blank" rel="nofollow">User Guide</a>.</p>
 	</div>
 
-	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ]</span>Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ] - [ <a href="/auth">Auth</a> ]</span>Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 <script>
 function lang(language_code) {

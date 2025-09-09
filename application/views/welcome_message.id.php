@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>Jika Anda baru pertama kali menjelajahi CodeIgniter, Anda harus mulai dengan membaca <a href="https://www.codeigniter.com/userguide3/" target="_blank" rel="nofollow">Panduan Pengguna</a>.</p>
 	</div>
 
-	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ]</span>Halaman dimuat dalam <strong>{elapsed_time}</strong> detik. <?php echo  (ENVIRONMENT === 'development') ?  'Versi CodeIgniter <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<p class="footer"><span style="float: left; font-weight: bold;">[ <a href="javascript:lang('en')">EN</a> | <a href="javascript:lang('id')">ID</a> ] - [ <a href="/auth">Auth</a> ]</span>Halaman dimuat dalam <strong>{elapsed_time}</strong> detik. <?php echo  (ENVIRONMENT === 'development') ?  'Versi CodeIgniter <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 <script>
 function lang(language_code) {

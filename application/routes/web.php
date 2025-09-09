@@ -24,3 +24,6 @@ Route::set('translate_uri_dashes', FALSE);
 
 # DB migration
 Route::get('webhook/migrate', 'webhook/Migrate@index');
+
+# Auth
+Route::get('auth', 'auth/Home@index');
