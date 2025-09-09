@@ -11,7 +11,7 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
-		$data['page_title'] = 'CodeIgniter 3 Starter Auth';
+		$data['page_title'] = 'CodeIgniter 3 Application Starter';
 		view('home', $data);
 	}
 
