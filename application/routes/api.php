@@ -13,4 +13,6 @@ Route::group('auth', function()
 	Route::post('forgot/forgot_process_ajax', 'auth/Forgot@forgot_process_ajax');
 	Route::post('forgot/recovery_process_ajax', 'auth/Forgot@recovery_process_ajax');
 	Route::post('register/process_ajax', 'auth/Register@process_ajax');
+	Route::post('activation/resend_process_ajax', 'auth/Activation@resend_process_ajax');
+	Route::post('activation/activate_process_ajax', 'auth/Activation@activate_process_ajax');
 });

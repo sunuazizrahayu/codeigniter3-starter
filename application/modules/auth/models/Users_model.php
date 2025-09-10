@@ -66,6 +66,21 @@ class Users_model extends CI_Model {
 		return $this->db->update($this->table, $object);
 	}
 
+	public function activate_user($user_id)
+	{
+		$current_time = time();
+
+		$object = [
+			'activation_code' => NULL,
+			'time_activation' => $current_time,
+		];
+		$this->db->where('id', $user_id);
+		$this->db->where('activation_code !=', NULL);
+		$this->db->where('time_activation', NULL);
+		$this->db->where('time_deleted', NULL);
+		return $this->db->update($this->table, $object);
+	}
+
 
 	// ------------------------------------------------------------------------
 	public function generate_reset_password($user_id, $expire_in_second=1800)

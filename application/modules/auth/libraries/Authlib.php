@@ -221,6 +221,15 @@ class Authlib
 	}
 
 
+	# activation
+	public function send_activation_success($email)
+	{
+		$CI = $this->ci;
+		$message = $CI->load->view('auth/email/activation/activation_success', [], TRUE);
+		return send_email($email, 'Account Activation Successful', $message);
+	}
+
+
 	# forgot password
 	public function send_reset_password_link($email, $user_id, $code)
 	{

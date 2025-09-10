@@ -38,4 +38,6 @@ Route::get('register', 'auth/Register@index');
 Route::group('auth', function()
 {
 	Route::get('forgot/recovery/(:any)/(:any)', 'auth/Forgot@recovery/$1/$2');
+	Route::get('activation/resend', 'auth/Activation@resend');
+	Route::get('activation/activate/(:any)/(:any)', 'auth/Activation@activate/$1/$2');
 });
