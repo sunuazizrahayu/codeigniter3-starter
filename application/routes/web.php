@@ -32,3 +32,4 @@ Route::get('sample/layouts/(.*)', 'sample/Layouts@$1');
 # Auth
 Route::get('auth', 'auth/Home@index');
 Route::get('login', 'auth/Login@index');
+Route::get('logout', 'auth/Logout@index');

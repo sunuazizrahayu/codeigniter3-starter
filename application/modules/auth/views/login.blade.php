@@ -32,7 +32,7 @@
 					<div class="col-8">
 						<div class="icheck-primary">
 							<input type="checkbox" id="remember" name="remember">
-							<label>Remember Me</label>
+							<label for="remember">Remember Me</label>
 						</div>
 					</div>
 					<div class="col-4">

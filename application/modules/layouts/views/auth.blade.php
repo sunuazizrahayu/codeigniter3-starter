@@ -81,6 +81,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Forgot Password</a></li>
 						<li><a class="dropdown-item" href="#">Resend Activation</a></li>
+						<li class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="<?=site_url('logout') ?>">Logout</a></li>
 					</ul>
 				</li>
 			</ul>
