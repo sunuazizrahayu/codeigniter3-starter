@@ -26,6 +26,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="<?=$theme?>plugins/fontawesome-free/css/all.min.css">
 <!-- Flag -->
 <link rel="stylesheet" href="<?=$theme?>plugins/flag-icon-css/css/flag-icon.min.css">
+<!-- icheck bootstrap -->
+<link rel="stylesheet" href="<?=$theme?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="<?=$theme?>plugins/sweetalert2/sweetalert2.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?=$theme?>dist/css/adminlte.min.css">
 <!-- Override style -->
@@ -34,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 .wrapper > .content-wrapper .content-header { padding: 15px 0 }
 .wrapper > .content-wrapper > .content-wrapper2 { max-width: 1140px; margin: auto; }
 </style>
-
+<?php "\n" ?>
 @yield('css')
 
 </head>
@@ -72,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<i class="fas fa-user"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right border-0 shadow">
-						<li><a class="dropdown-item" href="#">Login</a></li>
+						<li><a class="dropdown-item" href="<?=site_url('login') ?>">Login</a></li>
 						<li><a class="dropdown-item" href="#">Register</a></li>
 						<li class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#">Forgot Password</a></li>
@@ -117,6 +121,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<?=$theme?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?=$theme?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?=$theme?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=$theme?>dist/js/adminlte.min.js"></script>
 <!-- Set Language -->
@@ -136,7 +142,7 @@ function lang(language_code) {
 	window.location = window.location.href;
 }
 </script>
-
+<?php "\n" ?>
 @yield('js')
 
 </body>

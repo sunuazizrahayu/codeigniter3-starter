@@ -25,6 +25,9 @@ RUN apk add php-mbstring
 # database / migration
 RUN apk add php-mysqli
 
+# session
+RUN apk add php-session
+
 
 
 # NGINX Configurations

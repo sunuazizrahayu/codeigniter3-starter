@@ -25,6 +25,9 @@ RUN apk add php81-mbstring
 # database / migration
 RUN apk add php81-mysqli
 
+# session
+RUN apk add php81-session
+
 
 
 # NGINX Configurations
