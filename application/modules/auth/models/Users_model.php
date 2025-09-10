@@ -25,6 +25,25 @@ class Users_model extends CI_Model {
 
 
 	// ------------------------------------------------------------------------
+	public function create_user($email, $password=NULL)
+	{
+		$current_time = time();
+		$password_hash = NULL;
+		if (!empty($password)) {
+			$password_hash = $this->generate_password_hash($password);
+		}
+
+		$object = [
+			'email' => $email,
+			'password' => $password_hash,
+			'time_created' => $current_time,
+			'time_updated' => $current_time,
+		];
+		$this->db->insert($this->table, $object);
+		$user_id = $this->db->insert_id();
+		return $user_id;
+	}
+
 	public function update_password($user_id, $password)
 	{
 		$current_time = time();
@@ -36,6 +55,15 @@ class Users_model extends CI_Model {
 			'time_updated' => $current_time,
 		];
 		return $this->db->update($this->table, $object, ['id' => $user_id]);
+	}
+
+	public function save_user_activation_code($user_id, $code_hash)
+	{
+		$object = [
+			'activation_code' => $code_hash,
+		];
+		$this->db->where('id', $user_id);
+		return $this->db->update($this->table, $object);
 	}
 
 

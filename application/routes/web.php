@@ -34,6 +34,7 @@ Route::get('auth', 'auth/Home@index');
 Route::get('login', 'auth/Login@index');
 Route::get('logout', 'auth/Logout@index');
 Route::get('forgot', 'auth/Forgot@index');
+Route::get('register', 'auth/Register@index');
 Route::group('auth', function()
 {
 	Route::get('forgot/recovery/(:any)/(:any)', 'auth/Forgot@recovery/$1/$2');

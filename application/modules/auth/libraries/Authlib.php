@@ -190,6 +190,37 @@ class Authlib
 
 	// FUNCTION
 	// ------------------------------------------------------------------------
+	# register
+	public function generate_activation_code($user_id)
+	{
+		$payload = [
+			'uid' => $user_id,
+			'time' => time(),
+			'random' => base64_encode(openssl_random_pseudo_bytes(30)),
+		];
+		$data = json_encode($payload);
+		$code = password_hash($data, PASSWORD_BCRYPT);
+		$code = md5($code);
+		$code_hash = password_hash($code, PASSWORD_BCRYPT);
+		$result = [
+			'code' => $code,
+			'hash' => $code_hash,
+		];
+		return $result;
+	}
+
+	public function send_activation_link($email, $user_id, $code)
+	{
+		$CI = $this->ci;
+		
+		$link = site_url('auth/activation/activate/'.$user_id.'/'.$code);
+
+		$message = $CI->load->view('email/activation/activation', [], TRUE);
+		$message = str_replace('[url_activation]', $link, $message);
+		return send_email($email, 'Account Activation', $message);
+	}
+
+
 	# forgot password
 	public function send_reset_password_link($email, $user_id, $code)
 	{
