@@ -79,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li><a class="dropdown-item" href="<?=site_url('login') ?>">Login</a></li>
 						<li><a class="dropdown-item" href="#">Register</a></li>
 						<li class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#">Forgot Password</a></li>
+						<li><a class="dropdown-item" href="<?=site_url('forgot') ?>">Forgot Password</a></li>
 						<li><a class="dropdown-item" href="#">Resend Activation</a></li>
 						<li class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?=site_url('logout') ?>">Logout</a></li>

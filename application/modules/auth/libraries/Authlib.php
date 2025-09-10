@@ -11,7 +11,7 @@ class Authlib
 		$this->ci->load->add_package_path(APPPATH.'third_party/Slice-Library/')->library('slice'); //blade engine
 		$this->ci->load->database();
 		$this->ci->load->library(['session','form_validation']);
-		$this->ci->load->helper(['url','cookie','json']);
+		$this->ci->load->helper(['url','cookie','json','message','log']);
 		$this->ci->load->model('auth/Users_model');
 	}
 
@@ -167,6 +167,7 @@ class Authlib
 			die;
 		}
 	}
+
 	public function mustLogout()
 	{
 		$CI = $this->ci;
@@ -184,6 +185,28 @@ class Authlib
 			}
 			die;
 		}
+	}
+
+
+	// FUNCTION
+	// ------------------------------------------------------------------------
+	# forgot password
+	public function send_reset_password_link($email, $user_id, $code)
+	{
+		$CI = $this->ci;
+
+		$link = site_url('auth/forgot/recovery/'.$user_id.'/'.$code);
+
+		$message = $CI->load->view('auth/email/forgot/forgot_password', [], TRUE);
+		$message = str_replace('[link_reset]', $link, $message);
+		return send_email($email, 'Reset Password', $message);
+	}
+
+	public function send_reset_password_success($email)
+	{
+		$CI = $this->ci;
+		$message = $CI->load->view('auth/email/forgot/forgot_password_success', [], TRUE);
+		return send_email($email, 'Password Reset Successful', $message);
 	}
 
 }

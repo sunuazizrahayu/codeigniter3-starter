@@ -25,6 +25,7 @@ class Login extends MY_Controller {
 		$input_raw = $this->input->raw_input_stream;
 		parse_str($input_raw, $input);
 
+		$this->form_validation->set_data($input);
 		$this->form_validation->set_rules('email', 'email', 'trim|required');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$this->form_validation->set_rules('remember', 'remember', 'trim');

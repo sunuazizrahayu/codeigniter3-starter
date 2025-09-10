@@ -37,7 +37,8 @@ class Migration_Create_table_users extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => 255,
 				'null' => TRUE,
-				'default' => NULL
+				'default' => NULL,
+				'comment' => '<time_expired>_<forgot_code_hash>'
 			],
 			'activation_code' => [
 				'type' => 'VARCHAR',
