@@ -108,6 +108,7 @@ class Activation extends MY_Controller {
 		//validate activation code
 		$valid = password_verify($code_key, $user_activation_code_hash);
 		if (!$valid) {
+			$log_codekey_verify = json_encode(['code'=>$code_key, 'hash'=>$user_activation_code_hash]);
 			print_log('Account Activation Page :: user_id='.$user_id.' | code_key='.$code_key.' -> code key invalid ['.$log_codekey_verify.']');
 			show_404();
 		}
@@ -147,6 +148,8 @@ class Activation extends MY_Controller {
 		//get user
 		$user = $this->Users_model->get_by_id($user_id, TRUE)->row_array();
 		if (!$user) {
+			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> user not found');
+
 			http_response_code(404);
 			echo json(['message' => 'Account Not Found']);
 			die;
@@ -160,6 +163,8 @@ class Activation extends MY_Controller {
 
 		//check user is activated
 		if ($user_is_active) {
+			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> user activated');
+
 			http_response_code(403);
 			echo json(['message' => 'Account Already Active']);
 			die;
@@ -168,6 +173,9 @@ class Activation extends MY_Controller {
 		//validate activation code
 		$valid = password_verify($code_key, $user_activation_code_hash);
 		if (!$valid) {
+			$log_codekey_verify = json_encode(['code'=>$code_key, 'hash'=>$user_activation_code_hash]);
+			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> code key invalid ['.$log_codekey_verify.']');
+
 			http_response_code(401);
 			echo json(['message' => 'Invalid Activation Code']);
 			die;
