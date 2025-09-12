@@ -29,6 +29,7 @@ Route::get('webhook/migrate', 'webhook/Migrate@index');
 Route::get('sample/layouts/', 'sample/Layouts@index');
 Route::get('sample/layouts/(.*)', 'sample/Layouts@$1');
 
+
 # Auth
 Route::get('login', function()
 {
@@ -43,9 +44,10 @@ Route::get('forgot', function()
 	redirect('auth/forgot');
 });
 Route::get('logout', 'auth/Logout@index');
-Route::group('auth', function()
+
+Route::get('auth', 'auth/Home@index');
+Route::group('auth', ['middleware' => ['AuthLogout']], function()
 {
-	Route::get('/', 'auth/Home@index');
 	Route::get('login', 'auth/Login@index');
 	Route::get('register', 'auth/Register@index');
 	Route::get('logout', 'auth/Logout@index');
