@@ -212,10 +212,11 @@ class Authlib
 	public function send_activation_link($email, $user_id, $code)
 	{
 		$CI = $this->ci;
-		
+		$lang_code = $CI->config->item('language_abbr');
+
 		$link = site_url('auth/activation/activate/'.$user_id.'/'.$code);
 
-		$message = $CI->load->view('email/activation/activation', [], TRUE);
+		$message = $CI->load->view('auth/email/'.$lang_code.'/activation', [], TRUE);
 		$message = str_replace('[url_activation]', $link, $message);
 		return send_email($email, 'Account Activation', $message);
 	}
@@ -225,7 +226,9 @@ class Authlib
 	public function send_activation_success($email)
 	{
 		$CI = $this->ci;
-		$message = $CI->load->view('auth/email/activation/activation_success', [], TRUE);
+		$lang_code = $CI->config->item('language_abbr');
+
+		$message = $CI->load->view('auth/email/'.$lang_code.'/activation_success', [], TRUE);
 		return send_email($email, 'Account Activation Successful', $message);
 	}
 
@@ -234,10 +237,11 @@ class Authlib
 	public function send_reset_password_link($email, $user_id, $code)
 	{
 		$CI = $this->ci;
+		$lang_code = $CI->config->item('language_abbr');
 
 		$link = site_url('auth/forgot/recovery/'.$user_id.'/'.$code);
 
-		$message = $CI->load->view('auth/email/forgot/forgot_password', [], TRUE);
+		$message = $CI->load->view('auth/email/'.$lang_code.'/forgot_password', [], TRUE);
 		$message = str_replace('[link_reset]', $link, $message);
 		return send_email($email, 'Reset Password', $message);
 	}
@@ -245,7 +249,9 @@ class Authlib
 	public function send_reset_password_success($email)
 	{
 		$CI = $this->ci;
-		$message = $CI->load->view('auth/email/forgot/forgot_password_success', [], TRUE);
+		$lang_code = $CI->config->item('language_abbr');
+
+		$message = $CI->load->view('auth/email/'.$lang_code.'/forgot_password_success', [], TRUE);
 		return send_email($email, 'Password Reset Successful', $message);
 	}
 

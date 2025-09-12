@@ -1,0 +1,1 @@
+Selamat! Akun Anda telah diaktifkan.
