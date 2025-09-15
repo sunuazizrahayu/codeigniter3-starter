@@ -13,7 +13,7 @@ class Authlib
 		$this->ci->load->library(['session','form_validation']);
 		$this->ci->load->helper(['url','cookie','json','message','log']);
 		$this->ci->load->model('auth/Users_model');
-		$this->ci->load->language('auth');
+		$this->ci->load->language('auth/auth');
 	}
 
 	// SESSION

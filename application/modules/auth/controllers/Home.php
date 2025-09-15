@@ -6,7 +6,6 @@ class Home extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->add_package_path(APPPATH.'third_party/Slice-Library/')->library('slice');
 		$this->load->library('auth/Authlib');
 
 		//load session with remember
@@ -18,7 +17,7 @@ class Home extends MY_Controller {
 	public function index()
 	{
 		$data['page_title'] = 'CodeIgniter 3 Application Starter';
-		view('home', $data);
+		view('auth/home', $data);
 	}
 
 }
