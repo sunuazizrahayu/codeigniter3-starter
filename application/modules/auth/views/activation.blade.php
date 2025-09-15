@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box m-auto pt-4 pb-5">
 	<div class="login-logo">
-		<a href="javascript:void(0)">Account Activation</a>
+		<a href="javascript:void(0)"><?=lang('Account Activation') ?></a>
 	</div>
 	<div class="card">
 		<div class="card-body login-card-body">
@@ -13,7 +13,7 @@
 
 				<div class="row">
 					<div class="col-12">
-						<button type="submit" class="btn btn-primary btn-block">Activate Account</button>
+						<button type="submit" class="btn btn-primary btn-block"><?=lang('Activate Account') ?></button>
 					</div>
 				</div>
 			</form>
@@ -50,8 +50,8 @@ $('#myform').submit(function(e) {
 			errors.text('');
 		},
 		success: function(response, status, xhr) {
-			Swal.fire('Congratulations!', response.message, 'success').then(function() {
-				document.write('Please wait..');
+			Swal.fire('<?=lang('Congratulations') ?>!', response.message, 'success').then(function() {
+				document.write('<?=lang('Please Wait') ?>..');
 				window.location = '<?=$url_login ?>';
 			});
 		},
@@ -61,24 +61,24 @@ $('#myform').submit(function(e) {
 
 			//handle no internet
 			if (response_status == 0) {
-				Swal.fire('Oops..!', 'No Internet ['+response_status+']', 'warning');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('No Internet') ?> ['+response_status+']', 'warning');
 				return;
 			}
 
 			//handle server error
 			if (response_status >= 500) {
-				Swal.fire(error+' ['+response_status+']', 'Please try again or contact our support!', 'error');
+				Swal.fire(error+' ['+response_status+']', '<?=lang('Please try again or contact our support') ?>!', 'error');
 				return;
 			}
 
 			//handle unwanted response
 			if (response == undefined) {
-				Swal.fire('Oops..!', 'Unknown Server Response ['+response_status+']', 'error');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('Unknown Server Response') ?> ['+response_status+']', 'error');
 				return;
 			}
 
 			//other response
-			Swal.fire('Oops..!', response.message, 'error');
+			Swal.fire('<?=lang('Oops') ?>..!', response.message, 'error');
 
 			//handle form input
 			let errors = response.errors;

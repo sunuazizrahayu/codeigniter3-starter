@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box m-auto pt-4 pb-5">
 	<div class="login-logo">
-		<a href="javascript:void(0)">Password Recovery</a>
+		<a href="javascript:void(0)"><?=lang('Password Recovery') ?></a>
 	</div>
 	<div class="card">
 		<div class="card-body login-card-body">
@@ -12,7 +12,7 @@
 				<input type="hidden" name="code" value="<?=$code_key ?>">
 
 				<div class="input-group">
-					<input type="password" name="password" class="form-control" placeholder="New Password" autocomplete="off">
+					<input type="password" name="password" class="form-control" placeholder="<?=lang('New Password') ?>" autocomplete="off">
 					<div class="input-group-append">
 						<div class="input-group-text" style="cursor: pointer;" onclick="showHidePassword('myform','password')">
 							<span class="fas fa-eye-slash password-icon"></span>
@@ -22,7 +22,7 @@
 				<div class="text-danger mb-3" data-error="password"></div>
 
 				<div class="input-group">
-					<input type="password" name="password_retype" class="form-control" placeholder="Retype New Password" autocomplete="off">
+					<input type="password" name="password_retype" class="form-control" placeholder="<?=lang('Retype New Password') ?>" autocomplete="off">
 					<div class="input-group-append">
 						<div class="input-group-text" style="cursor: pointer;" onclick="showHidePassword('myform','password_retype')">
 							<span class="fas fa-eye-slash password-icon"></span>
@@ -33,7 +33,7 @@
 
 				<div class="row">
 					<div class="col-12">
-						<button type="submit" class="btn btn-primary btn-block">Change Password</button>
+						<button type="submit" class="btn btn-primary btn-block"><?=lang('Change Password') ?></button>
 					</div>
 				</div>
 			</form>
@@ -84,8 +84,8 @@ $('#myform').submit(function(e) {
 			errors.text('');
 		},
 		success: function(response, status, xhr) {
-			Swal.fire('Success!', response.message, 'success').then(function() {
-				document.write('Please wait..');
+			Swal.fire('<?=lang('Success') ?>!', response.message, 'success').then(function() {
+				document.write('<?=lang('Please Wait') ?>..');
 				window.location = '<?=$url_login ?>';
 			});
 		},
@@ -95,24 +95,24 @@ $('#myform').submit(function(e) {
 
 			//handle no internet
 			if (response_status == 0) {
-				Swal.fire('Oops..!', 'No Internet ['+response_status+']', 'warning');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('No Internet') ?> ['+response_status+']', 'warning');
 				return;
 			}
 
 			//handle server error
 			if (response_status >= 500) {
-				Swal.fire(error+' ['+response_status+']', 'Please try again or contact our support!', 'error');
+				Swal.fire(error+' ['+response_status+']', '<?=lang('Please try again or contact our support') ?>!', 'error');
 				return;
 			}
 
 			//handle unwanted response
 			if (response == undefined) {
-				Swal.fire('Oops..!', 'Unknown Server Response ['+response_status+']', 'error');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('Unknown Server Response') ?> ['+response_status+']', 'error');
 				return;
 			}
 
 			//other response
-			Swal.fire('Oops..!', response.message, 'error');
+			Swal.fire('<?=lang('Oops') ?>..!', response.message, 'error');
 
 			//handle form input
 			let errors = response.errors;

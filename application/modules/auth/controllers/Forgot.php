@@ -15,7 +15,7 @@ class Forgot extends MY_Controller {
 	public function index()
 	{
 		$data['url_form'] = site_url('auth/forgot/forgot_process_ajax');
-		$data['page_title'] = 'Forgot Password';
+		$data['page_title'] = lang('Forgot Password');
 		view('auth/forgot_password', $data);
 	}
 
@@ -25,11 +25,11 @@ class Forgot extends MY_Controller {
 		parse_str($input_raw, $input);
 
 		$this->form_validation->set_data($input);
-		$this->form_validation->set_rules('email', 'email', 'trim|required');
+		$this->form_validation->set_rules('email', lang('email'), 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -44,7 +44,7 @@ class Forgot extends MY_Controller {
 		$user = $this->Users_model->get_by_email($email, TRUE)->row_array();
 		if (!$user) {
 			http_response_code(404);
-			echo json(['message' => 'Account Not Found']);
+			echo json(['message' => lang('Account Not Found')]);
 			die;
 		}
 
@@ -56,7 +56,7 @@ class Forgot extends MY_Controller {
 		//check user is activated
 		if (!$user_is_active) {
 			http_response_code(403);
-			echo json(['message' => 'Account Not Activated']);
+			echo json(['message' => lang('Account Not Activated')]);
 			die;
 		}
 
@@ -69,7 +69,7 @@ class Forgot extends MY_Controller {
 			$this->authlib->send_reset_password_link($email, $user_id, $forgot_code);
 
 			//response
-			echo json(['message' => "We've sent you a link to reset your password"]);
+			echo json(['message' => lang("We've sent you a link to reset your password")]);
 			die;
 		}
 
@@ -127,7 +127,7 @@ class Forgot extends MY_Controller {
 		$data['url_login'] = site_url('login');
 		// ------------------------------------------------------------------------
 		$data['url_form'] = site_url('auth/forgot/recovery_process_ajax');
-		$data['page_title'] = 'Password Recovery';
+		$data['page_title'] = lang('Password Recovery');
 		view('auth/forgot_password_recovery', $data);
 	}
 
@@ -137,14 +137,14 @@ class Forgot extends MY_Controller {
 		parse_str($input_raw, $input);
 
 		$this->form_validation->set_data($input);
-		$this->form_validation->set_rules('user_id', 'user id', 'trim|required');
-		$this->form_validation->set_rules('code', 'reset password code', 'trim|required');
-		$this->form_validation->set_rules('password', 'password', 'required|min_length[8]');
-		$this->form_validation->set_rules('password_retype', 'retype password', 'required|matches[password]');
+		$this->form_validation->set_rules('user_id', lang('user id'), 'trim|required');
+		$this->form_validation->set_rules('code', lang('reset password code'), 'trim|required');
+		$this->form_validation->set_rules('password', lang('password'), 'required|min_length[8]');
+		$this->form_validation->set_rules('password_retype', lang('retype password'), 'required|matches[password]');
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -161,7 +161,7 @@ class Forgot extends MY_Controller {
 		$user = $this->Users_model->get_by_id($user_id, TRUE)->row_array();
 		if (!$user) {
 			http_response_code(404);
-			echo json(['message' => 'Account Not Found']);
+			echo json(['message' => lang('Account Not Found')]);
 			die;
 		}
 
@@ -173,7 +173,7 @@ class Forgot extends MY_Controller {
 		//check user is activated
 		if (!$user_is_active) {
 			http_response_code(403);
-			echo json(['message' => 'Account Not Activated']);
+			echo json(['message' => lang('Account Not Activated')]);
 			die;
 		}
 
@@ -188,7 +188,7 @@ class Forgot extends MY_Controller {
 		$current_time = time();
 		if ($current_time > $user_forgot_time_expired) {
 			http_response_code(410);
-			echo json(['message' => 'Reset Password Expired']);
+			echo json(['message' => lang('Reset Password Expired')]);
 			die;
 		}
 
@@ -197,7 +197,7 @@ class Forgot extends MY_Controller {
 		$valid = password_verify($token, $user_forgot_hash);
 		if (!$valid) {
 			http_response_code(401);
-			echo json(['message' => 'Invalid Reset Password Token']);
+			echo json(['message' => lang('Invalid Reset Password Token')]);
 			die;
 		}
 		// ------------------------------------------------------------------------
@@ -211,7 +211,7 @@ class Forgot extends MY_Controller {
 			$this->authlib->send_reset_password_success($user_email);
 
 			//response
-			echo json(['message' => 'Password Reset Successful']);
+			echo json(['message' => lang('Password Reset Successful')]);
 			die;
 		}
 

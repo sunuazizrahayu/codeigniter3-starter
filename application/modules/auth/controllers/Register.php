@@ -15,7 +15,7 @@ class Register extends MY_Controller {
 		$data['url_terms'] = 'javascript:void(0)';
 		// ------------------------------------------------------------------------
 		$data['url_form'] = site_url('auth/register/process_ajax');
-		$data['page_title'] = 'Register';
+		$data['page_title'] = lang('Register');
 		view('auth/register', $data);
 	}
 
@@ -25,16 +25,16 @@ class Register extends MY_Controller {
 		parse_str($input_raw, $input);
 
 		$this->form_validation->set_data($input);
-		$this->form_validation->set_rules('email', 'email', 'trim|required');
-		$this->form_validation->set_rules('password', 'password', 'required|min_length[8]');
-		$this->form_validation->set_rules('password_retype', 'retype password', 'required|matches[password]');
-		$this->form_validation->set_rules('terms', 'terms', 'trim|required', [
-			'required' => 'You must agree with our terms.'
+		$this->form_validation->set_rules('email', lang('email'), 'trim|required');
+		$this->form_validation->set_rules('password', lang('password'), 'required|min_length[8]');
+		$this->form_validation->set_rules('password_retype', lang('retype password'), 'required|matches[password]');
+		$this->form_validation->set_rules('terms', lang('terms'), 'trim|required', [
+			'required' => lang('You must agree with our terms').'.'
 		]);
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -50,7 +50,7 @@ class Register extends MY_Controller {
 		$user = $this->Users_model->get_by_email($email)->row_array();
 		if ($user) {
 			http_response_code(403);
-			echo json(['message' => 'An Account with This Email Already Exists']);
+			echo json(['message' => lang('An Account with This Email Already Exists')]);
 			die;
 		}
 
@@ -72,7 +72,7 @@ class Register extends MY_Controller {
 
 			//response
 			http_response_code(201);
-			echo json(['message' => "We've Sent You an Email to Activate Your Account"]);
+			echo json(['message' => lang("We've Sent You an Email to Activate Your Account")]);
 			die;
 		}
 

@@ -16,7 +16,7 @@ class Login extends MY_Controller {
 		$data['url_register'] = site_url('register');
 		// ------------------------------------------------------------------------
 		$data['url_form'] = site_url('auth/login/process_ajax');
-		$data['page_title'] = 'Login';
+		$data['page_title'] = lang('Login');
 		view('auth/login', $data);
 	}
 
@@ -26,13 +26,13 @@ class Login extends MY_Controller {
 		parse_str($input_raw, $input);
 
 		$this->form_validation->set_data($input);
-		$this->form_validation->set_rules('email', 'email', 'trim|required');
-		$this->form_validation->set_rules('password', 'password', 'required');
-		$this->form_validation->set_rules('remember', 'remember', 'trim');
+		$this->form_validation->set_rules('email', lang('email'), 'trim|required');
+		$this->form_validation->set_rules('password', lang('password'), 'required');
+		$this->form_validation->set_rules('remember', lang('remember'), 'trim');
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -48,7 +48,7 @@ class Login extends MY_Controller {
 		$user = $this->Users_model->get_by_email($email, TRUE)->row_array();
 		if (!$user) {
 			http_response_code(404);
-			echo json(['message' => 'Account Not Found']);
+			echo json(['message' => lang('Account Not Found')]);
 			die;
 		}
 
@@ -60,14 +60,14 @@ class Login extends MY_Controller {
 		//validate user password
 		if (!password_verify($password, $user_password_hash)) {
 			http_response_code(401);
-			echo json(['message' => 'Incorrect Password']);
+			echo json(['message' => lang('Incorrect Password')]);
 			die;
 		}
 
 		//check user is activated
 		if (!$user_is_active) {
 			http_response_code(403);
-			echo json(['message' => 'Account Not Activated']);
+			echo json(['message' => lang('Account Not Activated')]);
 			die;
 		}
 
@@ -80,7 +80,7 @@ class Login extends MY_Controller {
 		}
 
 		//response
-		echo json(['message' => 'Login Successful']);
+		echo json(['message' => lang('Login Successful')]);
 	}
 
 }

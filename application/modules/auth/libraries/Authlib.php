@@ -8,11 +8,12 @@ class Authlib
 	public function __construct()
 	{
 		$this->ci =& get_instance();
-		$this->ci->load->add_package_path(APPPATH.'third_party/Slice-Library/')->library('slice'); //blade engine
+		$this->ci->load->add_package_path(APPPATH.'third_party/Slice-Library/')->helper('language')->library('slice'); //blade engine
 		$this->ci->load->database();
 		$this->ci->load->library(['session','form_validation']);
 		$this->ci->load->helper(['url','cookie','json','message','log']);
 		$this->ci->load->model('auth/Users_model');
+		$this->ci->load->language('auth');
 	}
 
 	// SESSION
@@ -160,7 +161,7 @@ class Authlib
 		if (!$this->isLoggedIn()) {
 			if ($CI->input->is_ajax_request()) {
 				http_response_code(403);
-				echo json(['message' => "You're not logged in"]);
+				echo json(['message' => lang("You're not logged in")]);
 			}else{
 				redirect('/');
 			}
@@ -179,7 +180,7 @@ class Authlib
 		if ($this->isLoggedIn()) {
 			if ($CI->input->is_ajax_request()) {
 				http_response_code(403);
-				echo json(['message' => "You're logged in"]);
+				echo json(['message' => lang("You're logged in")]);
 			}else{
 				redirect('/');
 			}
@@ -218,7 +219,7 @@ class Authlib
 
 		$message = $CI->load->view('auth/email/'.$lang_code.'/activation', [], TRUE);
 		$message = str_replace('[url_activation]', $link, $message);
-		return send_email($email, 'Account Activation', $message);
+		return send_email($email, lang('Account Activation'), $message);
 	}
 
 
@@ -229,7 +230,7 @@ class Authlib
 		$lang_code = $CI->config->item('language_abbr');
 
 		$message = $CI->load->view('auth/email/'.$lang_code.'/activation_success', [], TRUE);
-		return send_email($email, 'Account Activation Successful', $message);
+		return send_email($email, lang('Account Activation Successful'), $message);
 	}
 
 
@@ -243,7 +244,7 @@ class Authlib
 
 		$message = $CI->load->view('auth/email/'.$lang_code.'/forgot_password', [], TRUE);
 		$message = str_replace('[link_reset]', $link, $message);
-		return send_email($email, 'Reset Password', $message);
+		return send_email($email, lang('Reset Password'), $message);
 	}
 
 	public function send_reset_password_success($email)
@@ -252,7 +253,7 @@ class Authlib
 		$lang_code = $CI->config->item('language_abbr');
 
 		$message = $CI->load->view('auth/email/'.$lang_code.'/forgot_password_success', [], TRUE);
-		return send_email($email, 'Password Reset Successful', $message);
+		return send_email($email, lang('Password Reset Successful'), $message);
 	}
 
 }

@@ -15,7 +15,7 @@ class Activation extends MY_Controller {
 	public function resend()
 	{
 		$data['url_form'] = site_url('auth/activation/resend_process_ajax');
-		$data['page_title'] = 'Resend Activation';
+		$data['page_title'] = lang('Resend Activation');
 		view('auth/activation_resend', $data);
 	}
 
@@ -25,11 +25,11 @@ class Activation extends MY_Controller {
 		parse_str($input_raw, $input);
 
 		$this->form_validation->set_data($input);
-		$this->form_validation->set_rules('email', 'email', 'trim|required');
+		$this->form_validation->set_rules('email', lang('email'), 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -44,7 +44,7 @@ class Activation extends MY_Controller {
 		$user = $this->Users_model->get_by_email($email, TRUE)->row_array();
 		if (!$user) {
 			http_response_code(404);
-			echo json(['message' => 'Account Not Found']);
+			echo json(['message' => lang('Account Not Found')]);
 			die;
 		}
 
@@ -55,7 +55,7 @@ class Activation extends MY_Controller {
 		//check user is activated
 		if ($user_is_active) {
 			http_response_code(403);
-			echo json(['message' => 'Account Already Active']);
+			echo json(['message' => lang('Account Already Active')]);
 			die;
 		}
 
@@ -74,7 +74,7 @@ class Activation extends MY_Controller {
 
 			//response
 			http_response_code(201);
-			echo json(['message' => 'New Activation Link Sent to Your Email']);
+			echo json(['message' => lang('New Activation Link Sent to Your Email')]);
 			die;
 		}
 
@@ -118,7 +118,7 @@ class Activation extends MY_Controller {
 		$data['url_login'] = site_url('login');
 		// ------------------------------------------------------------------------
 		$data['url_form'] = site_url('auth/activation/activate_process_ajax');
-		$data['page_title'] = 'Account Activation';
+		$data['page_title'] = lang('Account Activation');
 		view('auth/activation', $data);
 	}
 
@@ -133,7 +133,7 @@ class Activation extends MY_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			http_response_code(400);
 			echo json([
-				'message' => 'Invalid Input',
+				'message' => lang('Invalid Input'),
 				'errors' => $this->form_validation->error_array(),
 			]);
 			die;
@@ -151,7 +151,7 @@ class Activation extends MY_Controller {
 			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> user not found');
 
 			http_response_code(404);
-			echo json(['message' => 'Account Not Found']);
+			echo json(['message' => lang('Account Not Found')]);
 			die;
 		}
 
@@ -166,7 +166,7 @@ class Activation extends MY_Controller {
 			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> user activated');
 
 			http_response_code(403);
-			echo json(['message' => 'Account Already Active']);
+			echo json(['message' => lang('Account Already Active')]);
 			die;
 		}
 
@@ -177,7 +177,7 @@ class Activation extends MY_Controller {
 			print_log('Account Activation Process :: user_id='.$user_id.' | code_key='.$code_key.' -> code key invalid ['.$log_codekey_verify.']');
 
 			http_response_code(401);
-			echo json(['message' => 'Invalid Activation Code']);
+			echo json(['message' => lang('Invalid Activation Code')]);
 			die;
 		}
 
@@ -192,7 +192,7 @@ class Activation extends MY_Controller {
 			}
 
 			//response
-			echo json(['message' => 'Activation Successful']);
+			echo json(['message' => lang('Activation Successful')]);
 			die;
 		}
 

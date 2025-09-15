@@ -3,13 +3,13 @@
 @section('content')
 <div class="login-box m-auto pt-4 pb-5">
 	<div class="login-logo">
-		<a href="javascript:void(0)">Login</a>
+		<a href="javascript:void(0)"><?=lang('Login') ?></a>
 	</div>
 	<div class="card">
 		<div class="card-body login-card-body">
 			<form id="myform" action="<?=$url_form ?>" method="post">
 				<div class="input-group">
-					<input type="email" name="email" class="form-control" placeholder="Email">
+					<input type="email" name="email" class="form-control" placeholder="<?=lang('Email') ?>">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-envelope"></span>
@@ -19,7 +19,7 @@
 				<div class="text-danger mb-3" data-error="email"></div>
 
 				<div class="input-group">
-					<input type="password" name="password" class="form-control" placeholder="Password">
+					<input type="password" name="password" class="form-control" placeholder="<?=lang('Password') ?>">
 					<div class="input-group-append">
 						<div class="input-group-text" style="cursor: pointer;" onclick="showHidePassword()">
 							<span class="fas fa-eye-slash password-icon"></span>
@@ -32,17 +32,17 @@
 					<div class="col-8">
 						<div class="icheck-primary">
 							<input type="checkbox" id="remember" name="remember">
-							<label for="remember">Remember Me</label>
+							<label for="remember"><?=lang('Remember Me') ?></label>
 						</div>
 					</div>
 					<div class="col-4">
-						<button type="submit" class="btn btn-primary btn-block">Login</button>
+						<button type="submit" class="btn btn-primary btn-block"><?=lang('Login') ?></button>
 					</div>
 				</div>
 			</form>
 
 			<div class="social-auth-links text-center mb-3">
-				<p>- OR -</p>
+				<p>- <?=strtoupper(lang('or')) ?> -</p>
 				<a href="#" class="btn btn-block btn-primary">
 					<i class="fab fa-facebook mr-2"></i> Sign in using Facebook
 				</a>
@@ -53,10 +53,10 @@
 			<!-- /.social-auth-links -->
 
 			<p class="mb-1">
-				<a href="<?=$url_forgot_password ?>">Forgot Password</a>
+				<a href="<?=$url_forgot_password ?>"><?=lang('Forgot Password') ?></a>
 			</p>
 			<p class="mb-0">
-				<a href="<?=$url_register ?>" class="text-center">Register New Account</a>
+				<a href="<?=$url_register ?>" class="text-center"><?=lang('Register New Account') ?></a>
 			</p>
 		</div>
 		<!-- /.login-card-body -->
@@ -116,24 +116,24 @@ $('#myform').submit(function(e) {
 
 			//handle no internet
 			if (response_status == 0) {
-				Swal.fire('Oops..!', 'No Internet ['+response_status+']', 'warning');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('No Internet') ?> ['+response_status+']', 'warning');
 				return;
 			}
 
 			//handle server error
 			if (response_status >= 500) {
-				Swal.fire(error+' ['+response_status+']', 'Please try again or contact our support!', 'error');
+				Swal.fire(error+' ['+response_status+']', '<?=lang('Please try again or contact our support') ?>!', 'error');
 				return;
 			}
 
 			//handle unwanted response
 			if (response == undefined) {
-				Swal.fire('Oops..!', 'Unknown Server Response ['+response_status+']', 'error');
+				Swal.fire('<?=lang('Oops') ?>..!', '<?=lang('Unknown Server Response') ?> ['+response_status+']', 'error');
 				return;
 			}
 
 			//other response
-			Swal.fire('Oops..!', response.message, 'error');
+			Swal.fire('<?=lang('Oops') ?>..!', response.message, 'error');
 
 			//handle form input
 			let errors = response.errors;

@@ -77,13 +77,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right border-0 shadow">
 						<?php if (!$this->authlib->isLoggedIn()): ?>
-						<li><a class="dropdown-item" href="<?=site_url('login') ?>">Login</a></li>
-						<li><a class="dropdown-item" href="<?=site_url('register') ?>">Register</a></li>
+						<li><a class="dropdown-item" href="<?=site_url('login') ?>"><?=lang('Login') ?></a></li>
+						<li><a class="dropdown-item" href="<?=site_url('register') ?>"><?=lang('Register') ?></a></li>
 						<li class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="<?=site_url('forgot') ?>">Forgot Password</a></li>
-						<li><a class="dropdown-item" href="<?=site_url('auth/activation/resend') ?>">Resend Activation</a></li>
+						<li><a class="dropdown-item" href="<?=site_url('forgot') ?>"><?=lang('Forgot Password') ?></a></li>
+						<li><a class="dropdown-item" href="<?=site_url('auth/activation/resend') ?>"><?=lang('Resend Activation') ?></a></li>
 						<?php else: ?>
-						<li><a class="dropdown-item" href="<?=site_url('logout') ?>">Logout</a></li>
+						<li><a class="dropdown-item" href="<?=site_url('logout') ?>"><?=lang('Logout') ?></a></li>
 						<?php endif ?>
 					</ul>
 				</li>

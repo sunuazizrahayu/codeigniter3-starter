@@ -17,7 +17,7 @@ class Logout extends MY_Controller {
 		//remove remember me
 		$this->authlib->remove_remember();
 
-		echo 'Logout Success';
+		echo lang('Logout Success');
 		redirect('/','refresh');
 	}
 

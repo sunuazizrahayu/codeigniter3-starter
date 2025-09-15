@@ -10,7 +10,7 @@ class AuthLogoutApi implements Luthier\MiddlewareInterface {
 
 		if ($CI->authlib->isLoggedIn()) {
 			http_response_code(403);
-			echo json(['message' => "You're already logged in!"]);
+			echo json(['message' => lang("You're already logged in")."!"]);
 			die;
 		}
 	}
