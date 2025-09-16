@@ -12,6 +12,12 @@
 - Storage Library (upload file)
 - Multi Language & Auto Translate
 - Laravel-Like Routes
+- User Auth
+  - Login
+  - Register (with activation link)
+  - Register Account Activation
+  - Resend Activation
+  - Forgot Password
 
 ## Requirements
 - PHP 8.0 or 8.1

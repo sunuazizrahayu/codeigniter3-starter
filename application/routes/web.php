@@ -24,3 +24,37 @@ Route::set('translate_uri_dashes', FALSE);
 
 # DB migration
 Route::get('webhook/migrate', 'webhook/Migrate@index');
+
+# sample layouts
+Route::get('sample/layouts/', 'sample/Layouts@index');
+Route::get('sample/layouts/(.*)', 'sample/Layouts@$1');
+
+
+# Auth
+Route::get('login', function()
+{
+	redirect('auth/login');
+});
+Route::get('register', function()
+{
+	redirect('auth/register');
+});
+Route::get('forgot', function()
+{
+	redirect('auth/forgot');
+});
+Route::get('logout', 'auth/Logout@index');
+
+Route::get('auth', 'auth/Home@index');
+Route::group('auth', ['middleware' => ['AuthLogout']], function()
+{
+	Route::get('login', 'auth/Login@index');
+	Route::get('register', 'auth/Register@index');
+	Route::get('logout', 'auth/Logout@index');
+
+	Route::get('forgot', 'auth/Forgot@index');
+	Route::get('forgot/recovery/(:any)/(:any)', 'auth/Forgot@recovery/$1/$2');
+
+	Route::get('activation/resend', 'auth/Activation@resend');
+	Route::get('activation/activate/(:any)/(:any)', 'auth/Activation@activate/$1/$2');
+});
