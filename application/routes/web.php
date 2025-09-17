@@ -19,7 +19,12 @@
  */
 
 Route::get('/', 'Welcome@index');
-Route::set('404_override', '');
+Route::set('404_override', function()
+{
+	$CI = ci();
+	$CI->load->module('layouts/Layouts');
+	$CI->layouts->page404();
+});
 Route::set('translate_uri_dashes', FALSE);
 
 # DB migration
