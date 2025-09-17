@@ -58,3 +58,11 @@ Route::group('auth', ['middleware' => ['AuthLogout']], function()
 	Route::get('activation/resend', 'auth/Activation@resend');
 	Route::get('activation/activate/(:any)/(:any)', 'auth/Activation@activate/$1/$2');
 });
+
+
+# User
+Route::group('user', ['middleware' => ['AuthLogin']], function()
+{
+	Route::get('/', function(){ redirect('user/dashboard');});
+	Route::get('settings', 'user/Settings@index');
+});

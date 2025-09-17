@@ -44,6 +44,17 @@ class Users_model extends CI_Model {
 		return $user_id;
 	}
 
+	public function update_email($user_id, $email)
+	{
+		$current_time = time();
+
+		$object = [
+			'email' => trim($email),
+			'time_updated' => $current_time,
+		];
+		return $this->db->update($this->table, $object, ['id' => $user_id]);
+	}
+
 	public function update_password($user_id, $password)
 	{
 		$current_time = time();

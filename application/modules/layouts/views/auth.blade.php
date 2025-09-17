@@ -83,6 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li><a class="dropdown-item" href="<?=site_url('forgot') ?>"><?=lang('Forgot Password') ?></a></li>
 						<li><a class="dropdown-item" href="<?=site_url('auth/activation/resend') ?>"><?=lang('Resend Activation') ?></a></li>
 						<?php else: ?>
+						<li><a class="dropdown-item" href="<?=site_url('user/settings') ?>"><?=lang('Settings') ?></a></li>
 						<li><a class="dropdown-item" href="<?=site_url('logout') ?>"><?=lang('Logout') ?></a></li>
 						<?php endif ?>
 					</ul>
